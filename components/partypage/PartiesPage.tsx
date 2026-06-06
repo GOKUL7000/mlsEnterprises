@@ -9,22 +9,22 @@ import { supabase } from "@/lib/supabase"
 import { Input } from "../ui/input"
 import { useAuth } from "@/hooks/useAuth"
 
-export type Party = {
+export interface Party {
   partiesID: number
   companyID: string
   partyName: string
   partyMobileNumber: string
   partyAddress: string
+  partyStatus: boolean
+  createdBy: string
   partyGST: string
   partyPan: string
-  tripCount: number
-  totalFreightAmount: number
-  pendingAmount: number
-  settledAmount: number
-  partyStatus: boolean
-  createdBy:string
-}
 
+  tripCount?: number
+  totalFreightAmount?: number
+  pendingAmount?: number
+  settledAmount?: number
+}
 export default function PartiesPage() {
   const { session, loading } = useAuth()
 

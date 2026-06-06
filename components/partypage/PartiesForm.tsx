@@ -20,16 +20,21 @@ export default function PartiesForm({
   const { session } = useAuth()
 
   const [form, setForm] = useState<Party>({
-    partiesID: initialData?.partiesID ?? 0,
-    companyID: initialData?.companyID ?? session?.companyID ?? "",
-    partyName: initialData?.partyName ?? "",
-    partyMobileNumber: initialData?.partyMobileNumber ?? "",
-    partyAddress: initialData?.partyAddress ?? "",
-    partyStatus: initialData?.partyStatus ?? true,
-    createdBy: initialData?.createdBy ?? session?.userID ?? "",
-    partyGST: initialData?.partyGST ?? "",
-    partyPan: initialData?.partyPan ?? "",
-  })
+  partiesID: initialData?.partiesID ?? 0,
+  companyID: initialData?.companyID ?? session?.companyID ?? "",
+  partyName: initialData?.partyName ?? "",
+  partyMobileNumber: initialData?.partyMobileNumber ?? "",
+  partyAddress: initialData?.partyAddress ?? "",
+  partyStatus: initialData?.partyStatus ?? true,
+  createdBy: initialData?.createdBy ?? "",
+  partyGST: initialData?.partyGST ?? "",
+  partyPan: initialData?.partyPan ?? "",
+
+  tripCount: initialData?.tripCount ?? 0,
+  totalFreightAmount: initialData?.totalFreightAmount ?? 0,
+  pendingAmount: initialData?.pendingAmount ?? 0,
+  settledAmount: initialData?.settledAmount ?? 0,
+})
 
   const [errors, setErrors] = useState<Record<string, string>>({})
 
