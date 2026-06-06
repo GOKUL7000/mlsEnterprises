@@ -101,6 +101,7 @@ const [openTruckPopover, setOpenTruckPopover] =  useState(false)
       initialData?.createdBy ||
       session?.userID ||
       null,
+      endDate: initialData?.endDate ?? "",
 
       
   })

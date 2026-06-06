@@ -57,6 +57,7 @@ export type Trip = {
 
   totalExpense?: number
   profit?: number
+  
 }
 
 export default function TripPage() {
