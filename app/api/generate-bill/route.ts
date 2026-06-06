@@ -1,6 +1,7 @@
+
+import { supabaseAdmin } from "@/lib/supabase-admin";
 import { NextResponse } from "next/server";
 import puppeteer from "puppeteer";
-import { supabase } from "@/lib/supabase";
 
 
 
@@ -11,7 +12,7 @@ export async function POST(req: Request) {
   const tripID = body.tripID;
 
   const { data: trip } =
-  await supabase
+  await supabaseAdmin
     .from("tripsTable")
     .select("*")
     .eq("tripID", tripID)
@@ -25,7 +26,7 @@ if (!trip) {
 }
 
 const { data: party } =
-  await supabase
+  await supabaseAdmin
     .from("partiesTable")
     .select("*")
     .eq(
@@ -35,7 +36,7 @@ const { data: party } =
     .single();
 
 const { data: truck } =
-  await supabase
+  await supabaseAdmin
     .from("trucksTable")
     .select("*")
     .eq(
@@ -45,7 +46,7 @@ const { data: truck } =
     .single();
 
 const { data: driver } =
-  await supabase
+  await supabaseAdmin
     .from("driversTable")
     .select("*")
     .eq(
@@ -55,7 +56,7 @@ const { data: driver } =
     .single();
 
 const { data: expenses } =
-  await supabase
+  await supabaseAdmin
     .from("trip_expenses")
     .select("*")
     .eq(
@@ -450,7 +451,7 @@ const fileName =
   `${trip.tripID}-${Date.now()}.pdf`;
 
 const { error: uploadError } =
-  await supabase.storage
+  await supabaseAdmin.storage
     .from("trip-bills")
     .upload(
       fileName,
@@ -480,7 +481,7 @@ const {
   data: signedUrlData,
   error: signedUrlError,
 } =
-  await supabase.storage
+  await supabaseAdmin.storage
     .from("trip-bills")
     .createSignedUrl(
       fileName,
@@ -502,7 +503,7 @@ if (signedUrlError) {
 const pdfUrl =
   signedUrlData.signedUrl;
 
-await supabase
+await supabaseAdmin
   .from("tripsTable")
   .update({
     bill_pdf_url: pdfUrl,
